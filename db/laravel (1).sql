@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2023 at 04:02 PM
+-- Generation Time: Sep 25, 2023 at 08:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -54,7 +54,7 @@ INSERT INTO `admin_menu` (`id`, `parent_id`, `order`, `title`, `icon`, `uri`, `p
 (8, 0, 1, 'Member', 'fa-user-plus', '/users', '*', '2023-09-12 01:49:10', '2023-09-13 06:06:40'),
 (9, 11, 4, 'Course Category', 'fa-certificate', '/course-types', '*', '2023-09-13 00:32:50', '2023-09-13 06:06:40'),
 (10, 11, 3, 'Courses', 'fa-book', '/courses', '*', '2023-09-13 06:04:13', '2023-09-13 06:06:40'),
-(11, 0, 2, 'About Courses', 'fa-align-justify', NULL, '*', '2023-09-13 06:06:16', '2023-09-13 06:06:40');
+(11, 0, 2, 'About Courses', 'fa-align-justify', '#', '*', '2023-09-13 06:06:16', '2023-09-24 08:08:39');
 
 -- --------------------------------------------------------
 
@@ -459,9 +459,20 @@ CREATE TABLE `courses` (
   `description` text DEFAULT NULL,
   `type_id` smallint(6) NOT NULL,
   `price` double(8,2) NOT NULL,
+  `lesson_num` smallint(6) DEFAULT NULL,
+  `video_length` smallint(6) DEFAULT NULL,
+  `follow` smallint(6) DEFAULT NULL,
+  `score` double(8,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `user_token`, `name`, `thumbnail`, `video`, `description`, `type_id`, `price`, `lesson_num`, `video_length`, `follow`, `score`, `created_at`, `updated_at`) VALUES
+(1, 'f7bf53348de275c6172891ce0b31d3aa', 'Angular Course', 'images/b5436debfc2250ae39bb76916c651f99.png', 'files/4a470ebf4a4142c6dd46fc8c1dcd6054.mp4', 'This is a beginner to advanced angular course', 2, 200.00, 2, 6, NULL, NULL, '2023-09-24 08:14:22', '2023-09-24 08:14:22');
 
 -- --------------------------------------------------------
 
@@ -775,70 +786,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `admin_menu`
---
-ALTER TABLE `admin_menu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `admin_operation_log`
---
-ALTER TABLE `admin_operation_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
-
---
--- AUTO_INCREMENT for table `admin_permissions`
---
-ALTER TABLE `admin_permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `admin_roles`
---
-ALTER TABLE `admin_roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `admin_users`
---
-ALTER TABLE `admin_users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `course_types`
---
-ALTER TABLE `course_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
